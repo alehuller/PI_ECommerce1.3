@@ -14,39 +14,39 @@
         <fieldset>
             <legend><b>Cadastro Endereço de Entrega</b></legend>
             <h2>Dados</h2>
-            <form  method="post" onsubmit="return validateForm();">
+            <form th:action="@{/paginaCadastroEnderecoCliente}" th:object="${enderecoEntrega}" method="post" onsubmit="return validateForm();">
                 <div class="inputBox">
-                    <input type="number" name="cep" id="cep" class="inputUser"  required>
+                    <input type="number" name="cep" id="cep" class="inputUser" th:field="*{cep}" required>
                     <label class="labelInput">CEP</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" name="logradouro" id="logradouro" class="inputUser"  required>
+                    <input type="text" name="logradouro" id="logradouro" class="inputUser" th:field="*{logradouro}" required>
                     <label class="labelInput">Logradouro</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="number" name="numero" id="numero" class="inputUser"  required>
+                    <input type="number" name="numero" id="numero" class="inputUser" th:field="*{numero}" required>
                     <label class="labelInput">Número</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" name="complemento" id="complemento" class="inputUser"  required>
+                    <input type="text" name="complemento" id="complemento" class="inputUser" th:field="*{complemento}" required>
                     <label class="labelInput">Complemento</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" nome="bairro" id="bairro" class="inputUser"  required>
+                    <input type="text" nome="bairro" id="bairro" class="inputUser" th:field="*{bairro}" required>
                     <label class="labelInput">Bairro</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" nome="cidade" id="cidade" class="inputUser"  required>
+                    <input type="text" nome="cidade" id="cidade" class="inputUser" th:field="*{cidade}" required>
                     <label class="labelInput">Cidade</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" nome="uf" id="uf" class="inputUser"   required>
+                    <input type="text" nome="uf" id="uf" class="inputUser" th:field="*{uf}" required>
                     <label class="labelInput">UF</label>
                 </div>
                 <br>

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Repository;
 
 import pi.quarto.semestre.codigo.model.Cliente;
+import pi.quarto.semestre.codigo.model.Usuario;
 
 @Repository
 public class ClienteDAO {
@@ -76,6 +77,44 @@ public class ClienteDAO {
             }
         }
         return clienteId;
+    }
+
+    public Cliente findByEmailDados(String loggedInUserEmail) throws SQLException{
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        String sql = "SELECT * FROM cliente WHERE email = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, loggedInUserEmail);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Cliente cliente = new Cliente();
+                    cliente.setId(rs.getLong("id"));
+                    cliente.setEmail(rs.getString("email"));
+                    cliente.setSenha(rs.getString("senha"));
+                    cliente.setCpf(rs.getString("cpf"));
+                    cliente.setNome(rs.getString("nome"));
+                    cliente.setDataNascimento(rs.getString("dataNascimento"));
+                    cliente.setGenero(rs.getString("genero"));
+                    return cliente;
+                }
+                return null; // Retorna null se não encontrou o usuário com o CPF especificado
+            }
+        }
+        }
+    }
+
+    public void editar(String email, Cliente cliente) throws SQLException {
+        var con = DriverManager.getConnection(URL, USER, PASSWORD);
+
+        var ps = con.prepareStatement("UPDATE cliente SET nome = ?, senha = ?, dataNascimento = ?, genero = ? WHERE email = ?");
+        ps.setString(1, cliente.getNome());
+        ps.setString(2, cliente.getSenha());
+        ps.setString(3, cliente.getDataNascimento());
+        ps.setString(4, cliente.getGenero());
+        ps.setString(5, email);
+
+        ps.execute();
+
+		con.close();
     }
 
 

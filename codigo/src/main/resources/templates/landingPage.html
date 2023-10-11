@@ -29,7 +29,7 @@
             <ul>
                 <li><a href=""><img src="images/icon-cart.svg"></a></li>
                 <li>
-                    <a th:href="${session.loggedInUser} ? '/paginaEditarCliente' : '/paginaLoginCliente'">
+                    <a th:href="${session.loggedInUser} ? '/paginaOpcoesCliente' : '/paginaLoginCliente'">
                         <span th:if="${session.loggedInUser}">Logado como <span th:text="${session.loggedInUser}"></span></span>
                         <span th:unless="${session.loggedInUser}">Login</span>
                     </a>

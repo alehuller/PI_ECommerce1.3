@@ -40,4 +40,19 @@ public class EnderecoEntregaDAO {
             ps.execute();
     }
 }
+
+    public void inserirCliente(Long id, EnderecoEntrega enderecoEntrega) throws SQLException {
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO enderecoentrega (cep, logradouro, numero, complemento, bairro, cidade, uf, clienteId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+            ps.setString(1, enderecoEntrega.getCep());
+            ps.setString(2, enderecoEntrega.getLogradouro());
+            ps.setString(3, enderecoEntrega.getNumero());
+            ps.setString(4, enderecoEntrega.getComplemento());
+            ps.setString(5, enderecoEntrega.getBairro());
+            ps.setString(6, enderecoEntrega.getCidade());
+            ps.setString(7, enderecoEntrega.getUf());
+            ps.setLong(8, id);
+            ps.execute();
+    }
+    }
 }
