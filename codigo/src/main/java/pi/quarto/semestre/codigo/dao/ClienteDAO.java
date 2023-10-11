@@ -117,5 +117,14 @@ public class ClienteDAO {
 		con.close();
     }
 
+    public void enderecoPrincipal(String email,Long id) throws SQLException{
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("UPDATE cliente set enderecoPrincipal = ? where email = ?;")) {
+            ps.setLong(1, id);
+            ps.setString(2, email);
+            ps.execute();
+        }
+    }
+
 
 }
