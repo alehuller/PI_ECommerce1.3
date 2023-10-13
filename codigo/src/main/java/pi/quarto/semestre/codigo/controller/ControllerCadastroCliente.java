@@ -61,7 +61,7 @@ public class ControllerCadastroCliente {
         EnderecoFaturamentoDAO enderecoFaturamentoDAO = new EnderecoFaturamentoDAO();
         enderecoFaturamentoDAO.criar(idDoCliente);
 
-        ModelAndView successModelAndView = new ModelAndView("redirect:/paginaCadastroEndereco");
+        ModelAndView successModelAndView = new ModelAndView("redirect:/paginaEscolhaDeEnderecoCadastro");
         return successModelAndView;
     }
 }
