@@ -17,20 +17,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import pi.quarto.semestre.codigo.dao.ClienteDAO;
 import pi.quarto.semestre.codigo.model.ClienteDto;
-import pi.quarto.semestre.codigo.model.UsuarioDto;
 import pi.quarto.semestre.codigo.util.Cripto;
 
 @Controller
-@RequestMapping("/paginaLoginCliente")
-public class ControllerLoginCliente {
-
+@RequestMapping("/paginaLoginClienteF")
+public class ControllerLoginClienteF {
+    
     @Autowired
     private HttpServletRequest request;
     
     @GetMapping
     public String init(final Model model) {
         model.addAttribute("clienteDto", new ClienteDto());
-        return "paginaLoginCliente";
+        return "paginaLoginClienteF";
     }
 
     public ModelAndView redirect(final Model model) {
