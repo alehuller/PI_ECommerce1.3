@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pi.quarto.semestre.codigo.dao.CarrinhoDAO;
 import pi.quarto.semestre.codigo.dao.ImagensDAO;
 import pi.quarto.semestre.codigo.dao.ProdutoDAO;
 import pi.quarto.semestre.codigo.model.Imagens;
@@ -42,5 +43,21 @@ public class ControllerPaginaProduto {
             System.out.println();
         }
         return "paginaProduto"; // Nome da página de detalhes do produto
+    }
+
+    @PostMapping("/adicionarCarrinho")
+    public String adicionarNoCarrinho(@RequestParam Long codigo, @RequestParam String nome, @RequestParam String valor, Model model) throws SQLException {
+        CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+        Boolean verificacao = carrinhoDAO.varredura(codigo); 
+
+        if(verificacao) {
+            Long quantidade = carrinhoDAO.pegarQuantidade(codigo);
+            carrinhoDAO.modificarQuantidade(codigo, quantidade);
+            return "redirect:/carrinhoClienteNaoLogado";
+        }
+        else {
+            carrinhoDAO.inserir(codigo, nome, valor);
+            return "redirect:/carrinhoClienteNaoLogado";
+        }
     }
 }

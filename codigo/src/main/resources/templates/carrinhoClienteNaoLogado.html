@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho</title>
+  <link rel="stylesheet" href="styleCarrinhoClienteNaoLogado.css">
+</head>
+
+<body>
+  <main class="main-section">
+    <section class="container normal-section">
+      <h2 class="section-title">Carrinho</h2>
+
+      <table class="cart-table">    
+        <thead>
+          <tr>
+            <th>Nome do Produto</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="carrinho : ${carrinhos}">
+            <td th:text="${carrinho.nome}"></td>
+            <td th:text="${carrinho.quantidade}"></td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="3" class="cart-total-container">
+              <strong>Total</strong>
+              <span>R$0,00</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="escolher-endereco">
+        <br>
+        <div class="input-box">
+          <label for="cep" class="labelInput">CEP:</label>
+          <input id="cep" type="number" name="cep" placeholder="Digite o CEP">
+        </div>
+        <input type="radio" id="frete1" name="frete" value="frete1" required>
+        <label for="frete1">receba até 16 de maio - grátis</label>
+        <br>
+        <input type="radio" id="frete2" name="frete" value="frete2" required>
+        <label for="frete2">retire na loja a partir de 16 de Maio - grátis</label>
+        <br>
+        <input type="radio" id="frete3" name="frete" value="frete3" required>
+        <label for="frete3">Correios receba até dia 14 de Maio - R$14,99</label>
+      </div>
+      <a href="paginaLoginClienteCarrinho.html"><button type="button" class="purchase-button">Finalizar
+          Compra</button></a>
+    </section>
+  </main>
+</body>
+
+</html>

@@ -21,7 +21,6 @@
             });
         });
     </script>
-    
 </head>
 
 <body>
@@ -82,6 +81,14 @@
                             <span>R$ <span class="price" th:text="${produto.valor}"></span></span>
                         </div>
                     </div>
+                    <td>
+                        <form th:action="@{/adicionarCarrinho}" method="post">
+                        <input type="hidden" name="codigo" th:value="${produto.codigo}"/>
+                        <input type="hidden" name="nome" th:value="${produto.nome}"/>
+                        <input type="hidden" name="valor" th:value="${produto.valor}"/>
+                        <button id="Adicionar no Carrinho" type="submit">Adicionar no Carrinho</button>
+                        </form>
+                    </td>
                 </div>
             </div>
         </section>

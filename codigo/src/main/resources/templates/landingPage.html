@@ -27,7 +27,7 @@
             </div>
 
             <ul>
-                <li><a href=""><img src="images/icon-cart.svg"></a></li>
+                <li><a href="/carrinhoClienteNaoLogado"><img src="images/icon-cart.svg"></a></li>
                 <li>
                     <a th:href="${session.loggedInUser} ? '/paginaOpcoesCliente' : '/paginaLoginCliente'">
                         <span th:if="${session.loggedInUser}">Logado como <span th:text="${session.loggedInUser}"></span></span>
@@ -66,6 +66,14 @@
                         <input type="hidden" name="codigo" th:value="${produto.codigo}" />
                         <button id="detalhe" type="submit">Detalhe</button>
                     </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/adicionarCarrinho}" method="post">
+                        <input type="hidden" name="codigo" th:value="${produto.codigo}"/>
+                        <input type="hidden" name="nome" th:value="${produto.nome}"/>
+                        <input type="hidden" name="valor" th:value="${produto.valor}"/>
+                        <button id="Adicionar no Carrinho" type="submit">Adicionar no Carrinho</button>
+                        </form>
                     </td>
                 </div>
             </div>
